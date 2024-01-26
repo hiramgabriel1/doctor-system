@@ -1,13 +1,12 @@
-// controllers
 import { Request, Response } from "express";
-import fichaIdentificacionModel from "../models/fichaIdentificacion.model";
+import patientsModels from "../models/fichaIdentificacion.model";
 
-class fichaIdentificacion {
+export class fichaIdentificacion {
   async getPatients(req: Request, res: Response) {
     try {
-      const patients = await fichaIdentificacionModel.find();
+      const patients = await patientsModels.findAll();
 
-      patients.length > 0
+      return patients.length > 0
         ? res.status(200).json({ messaje: patients, details: true })
         : res
             .status(400)
@@ -20,15 +19,22 @@ class fichaIdentificacion {
   async getPatientsByName(req: Request, res: Response) {
     try {
       const { name } = req.body;
-      const patients = fichaIdentificacionModel.find();
-      const patientsFiltered = patients.filter(patients.name.toLowerCase().includes(name.toLowerCase()));
+      const patients = await patientsModels.findOne({
+        where: { nombre: name },
+      });
 
-      patientsFiltered
-        ? res.status(200).json({ messaje: patientsFiltered, details: true })
-        : res.status(400).json({
-            messaje: "No existen pacientes con ese nombre o apellido",
-            details: false,
-          });
+      return patients === null
+        ? res.status(404).json("usuario no encontrado")
+        : res.status(200).json({ response: "encontrado", details: patients });
+
+      // const patientsFiltered = patients.filter(patients.name.toLowerCase().includes(name.toLowerCase()));
+
+      // patientsFiltered
+      //   ? res.status(200).json({ messaje: patientsFiltered, details: true })
+      //   : res.status(400).json({
+      //       messaje: "No existen pacientes con ese nombre o apellido",
+      //       details: false,
+      //     });
     } catch (error) {
       console.log(error);
     }
@@ -37,9 +43,9 @@ class fichaIdentificacion {
   async getPatientsFiltred(req: Request, res: Response) {
     try {
       const { filter } = req.params;
-      const patients = await fichaIdentificacionModel.find({
-        TypeConsulta: filter,
-            });
+      const patients = await patientsModels.findOne({
+        where: { filter: filter },
+      });
 
       patients
         ? res.status(200).json({ messaje: patients, details: true })
@@ -52,7 +58,7 @@ class fichaIdentificacion {
     }
   }
 
-  async createFichaIdentificacion(req: Request, res: Response){
+  async createFichaIdentificacion(req: Request, res: Response) {
     try {
       const {
         expediente,
@@ -88,9 +94,9 @@ class fichaIdentificacion {
         informacionAdicional,
       };
 
-      const createFicha = fichaIdentificacionModel.create({ dataUser });
+      const createFicha = await patientsModels.create({ dataUser });
 
-      createFicha
+      return createFicha
         ? res
             .send(200)
             .json({ messaje: "user created" + dataUser, details: true })
@@ -100,5 +106,3 @@ class fichaIdentificacion {
     }
   }
 }
-
-export { fichaIdentificacion };
