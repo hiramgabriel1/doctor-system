@@ -14,7 +14,24 @@ export class consultaGineco {
 
             };
 
-            const createConsult = await consultginecoModels.create({consultData})
+
+            const ifExist = await consultginecoModels.findOne({ 
+                where: {
+                    no: no,
+                    fecha: fecha,
+                    motiva: motivo,
+                    padecimiento: padecimiento,
+                }
+             });
+
+            if(ifExist) {
+                return res.json({
+                    messsage: "the consult already exist",
+                    details: consultData
+                })
+            }
+
+            const createConsult = await consultginecoModels.create({ consultData })
 
             createConsult 
             ? res.status(200).json({ messsage: `consult created ${consultData}`})
