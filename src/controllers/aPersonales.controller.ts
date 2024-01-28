@@ -55,7 +55,7 @@ export class aPersonales {
 
           created
           ? res.status(200).json({message:'antecedentes personales creados' +dataAPersonales , details:true})
-          : res.status(400).json({message:'error al crear', details:false})
+          : res.status(400).json({message:'internal server error', details:false})
     }catch(error){
         console.log(error)
     }

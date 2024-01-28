@@ -11,7 +11,7 @@ const consultaObstetro = sequelize.define("consultaObstetro", {
     },
     allowNull: false,
   },
-  no: { //creo que se va
+  no: { //creo que se
     type: DataTypes.STRING,
     allowNull: false,
   },
