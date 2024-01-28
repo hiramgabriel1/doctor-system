@@ -2,12 +2,14 @@ import { Sequelize, DataTypes } from "sequelize";
 
 const sequelize = new Sequelize("sqlite::memory:");
 
-const patientsModels = sequelize.define("User", {
-  nombre: {
-    type: DataTypes.STRING,
+const fichaIdentificacion = sequelize.define("fichaIdentificacion", {
+  expediente:{
+    type:DataTypes.INTEGER,
+    autoIncrement:true,
     allowNull: false,
+    primaryKey:true,
   },
-  tipoConsulta: {
+  nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -33,12 +35,12 @@ const patientsModels = sequelize.define("User", {
   },
   Dirección: {
     type: DataTypes.STRING,
-    allowNull: false, // Puedes ajustar esto según tus necesidades
+    allowNull: false, 
   },
   TelefonoPersonales: {
     type: DataTypes.STRING,
-    allowNull: false, // Puedes ajustar esto según tus necesidades
+    allowNull: false,
   },
 });
 
-export default patientsModels;
+export default fichaIdentificacion;
