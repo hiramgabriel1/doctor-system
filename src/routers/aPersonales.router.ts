@@ -4,7 +4,7 @@ import { aPersonales } from "../controllers/aPersonales.controller";
 
 const controllerAPersonales = new aPersonales();
 const routerAPersonales = Router();
-const path = "/antecedentesPersonales";
+const path = "/antecedentespersonales";
 
 // todo: get by username
 routerAPersonales.get(

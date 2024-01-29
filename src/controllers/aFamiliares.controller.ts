@@ -14,8 +14,8 @@ export class aFamiliares {
         });
 
         aFamiliares
-        ? res.send(200).json({ message: aFamiliares, details:true })
-        : res.send(400).json({ message: "no posee antecedentes familiares", details:true });
+        ? res.status(200).json({ message: aFamiliares, details:true })
+        : res.status(400).json({ message: "no posee antecedentes familiares", details:false });
         } catch(error) {
             console.log(error)
         }
@@ -65,7 +65,7 @@ export class aFamiliares {
 
             created
             ? res.status(200).json({ message: "antecedentes familiares creados " + dataAFamiliares, details: true })
-            : res.status(400).json({ message: "error al crear", details: true})
+            : res.status(400).json({ message: "error al crear", details: false})
 
         } catch(error) {
             console.log(error)
