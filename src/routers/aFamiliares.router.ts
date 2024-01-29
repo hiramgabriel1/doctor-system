@@ -3,7 +3,7 @@ import { aFamiliares } from "../controllers/aFamiliares.controller";
 
 const controllerAFamiliares = new aFamiliares();
 const routerAFamiliares = Router();
-const path = "/antecedentesFamiliares";
+const path = "/antecedentesfamiliares";
 
 routerAFamiliares.get(`${path}/:expedienteId`, (req: Request, res: Response) => {
     controllerAFamiliares.getbyExpendiente(req, res);

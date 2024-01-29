@@ -3,7 +3,7 @@ import { consultaObstetro } from "../controllers/consultaObstetro.controller";
 
 const controllerFichaIdentificacion = new consultaObstetro();
 const routerConsultaObstetro = Router();
-const path = "/consultaObstetro";
+const path = "/consultaobstetro";
 
 // todo: get all patients
 routerConsultaObstetro.get(`${path}/all`, (req: Request, res: Response) => {

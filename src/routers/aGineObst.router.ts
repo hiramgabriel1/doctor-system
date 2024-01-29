@@ -3,7 +3,7 @@ import { aGineObstController } from "../controllers/aGineObst.controller";
 
 const controllerAGineObst= new aGineObstController()
 const routerAGineObst= Router();
-const path='/aGineObst'
+const path='/agineobst'
 
 routerAGineObst.get(`${path}/antecedentes/:expedienteId`,(req:Request, res:Response)=>{
     controllerAGineObst.getAGineObstByExpediente(req,res)

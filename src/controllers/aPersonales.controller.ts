@@ -4,7 +4,7 @@ import aPersonalesModel from "../models/aPersonales.model";
 export class aPersonales {
   async getbyExpediente(req:Request, res:Response){
     try{
-        const{expedienteId} = req.query
+        const{expedienteId} = req.params
         
         const aPersonalesPatient = await aPersonalesModel.findAll({
             where:{

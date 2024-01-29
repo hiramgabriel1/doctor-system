@@ -18,8 +18,7 @@ export class aGineObstController {
             .status(400)
             .json({
               message:
-                "el paciente no posee antecedentes ginecologicos obstetros",
-            });
+                "el paciente no posee antecedentes ginecologicos obstetros", details: false});
     } catch (error) {
       console.log(error);
     }
