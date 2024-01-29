@@ -12,7 +12,7 @@ routerConsultaObstetro.get(`${path}/all`, (req: Request, res: Response) => {
 
 // todo: get by username
 routerConsultaObstetro.get(
-  `${path}/antecedentes/:patient`,
+  `${path}/antecedentes/:expedienteId`,
   (req: Request, res: Response) => {
     controllerFichaIdentificacion.getAntecedentesPatients(req, res);
   }

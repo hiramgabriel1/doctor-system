@@ -5,9 +5,9 @@ import tratamientoObstetro from "../models/tratamientoObstetro.model";
 export class tratamientoObstetroController{
     async getTratamientosByExpediente(req:Request, res:Response){
         try {
-            const {expedienteID} = req.params;
+            const {expedienteId} = req.params;
 
-            const tratamientos= await tratamientoObstetro.findAll({where :{expediente_id:expedienteID}})
+            const tratamientos= await tratamientoObstetro.findAll({where :{expediente_id:expedienteId}})
 
             tratamientos
             ?res.status(200).json({messaje:tratamientos,details:true})

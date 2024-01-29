@@ -6,6 +6,6 @@ const tratamientoObstetro = new tratamientoObstetroController();
 const routerTratamientoObstetro = Router();
 
 // todo --> save consults & treatments
-routerTratamientoObstetro.get("/tratamientos/:expedienteID", (req: Request, res: Response) => {
+routerTratamientoObstetro.get("/tratamientos/:expedienteId", (req: Request, res: Response) => {
     tratamientoObstetro.getTratamientosByExpediente(req, res)
 })
