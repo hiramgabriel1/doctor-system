@@ -17,8 +17,7 @@ export class datosAdicionales {
             : res.status(400).json({ message: "no posee datos adicionales", details: false });
 
         } catch(error) {
-            console.log(error)
-        }
+            res.status(500).json({ errorResponse: error })        }
     }
 
     async createDatosAdicionales(req: Request, res: Response) {

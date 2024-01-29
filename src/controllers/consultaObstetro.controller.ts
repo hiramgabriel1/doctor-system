@@ -12,8 +12,7 @@ export class consultaObstetro {
             .status(400)
             .json({ messaje: "No existen consultas", details: false });
     } catch (error) {
-      console.log(error);
-    }
+      res.status(500).json({ errorResponse: error })    }
   }
 
   async getAntecedentesPatients(req: Request, res: Response) {
@@ -31,8 +30,7 @@ export class consultaObstetro {
             .status(400)
             .json({ message: "the user has no background", details: false });
     } catch (error) {
-      console.log(error);
-    }
+      res.status(500).json({ errorResponse: error })    }
   }
 
   async createConsultaObstetro(req: Request, res: Response) {
@@ -73,8 +71,7 @@ export class consultaObstetro {
             .status(400)
             .json({ message: "error al crear", datails: false });
     } catch (error) {
-      console.log(error);
-    }
+      res.status(500).json({ errorResponse: error })    }
   }
 }
 

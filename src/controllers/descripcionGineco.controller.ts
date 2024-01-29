@@ -17,13 +17,13 @@ export class descripcionGineco{
             : res.status(400).json({message:"El usuario con expediente"+ expedienteId +"no tiene descripciones ginecológicas"})
 
         }catch(error){
-            console.log(error)
-        }
+            res.status(500).json({ errorResponse: error })        }
     }
 
 
     async createDescripcionGineco(req:Request,res:Response){
-        const {expediente_id,us,motivo,padecimientos}= req.body
+       try{
+         const {expediente_id,us,motivo,padecimientos}= req.body
         
         const data={
             expediente_id,
@@ -37,5 +37,8 @@ export class descripcionGineco{
         created
         ? res.status(200).json({message:created, details:true})
         :res.status(400).json({message:"error al crear el recurso", details:false})
+       }catch(error){
+        res.status(500).json({ errorResponse: error })        }
+
     }
 }

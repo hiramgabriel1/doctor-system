@@ -17,8 +17,7 @@ export class aFamiliares {
         ? res.status(200).json({ message: aFamiliares, details:true })
         : res.status(400).json({ message: "no posee antecedentes familiares", details:false });
         } catch(error) {
-            console.log(error)
-        }
+            res.status(500).json({ errorResponse: error })        }
     }
 
     async createAFamiliares(req: Request, res: Response) {
@@ -68,7 +67,6 @@ export class aFamiliares {
             : res.status(400).json({ message: "error al crear", details: false})
 
         } catch(error) {
-            console.log(error)
-        }
+            res.status(500).json({ errorResponse: error })        }
     }
 }

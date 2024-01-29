@@ -13,7 +13,7 @@ export class tratamientoObstetroController{
             ?res.status(200).json({messaje:tratamientos,details:true})
             :res.status(400).json({messaje:"no posee tratamientos",details:false})
         } catch (error) {
-            console.log(error)
+            res.status(500).json({ errorResponse: error })        
         }
     }
 }
