@@ -7,7 +7,7 @@ const routerDescipcionGineco = Router();
 
 // todo: get by username
 routerDescipcionGineco.get(
-  `descipcionGineco/:patient`,
+  `descipcionGineco/:expedienteId`,
   (req: Request, res: Response) => {
     controllerDescipcionGineco.getDescipcionGinecobyExpediente(req, res);
   }
