@@ -14,5 +14,9 @@ routerAFamiliares.post(`${path}/new`, (req: Request, res: Response) => {
     controllerAFamiliares.createAFamiliares(req, res)
 })
 
+routerAFamiliares.put(`${path}/antecedentesfamiliares/edit/:expedienteId`, (req: Request, res: Response) => {
+    controllerAFamiliares.modifyAFamiliares(req, res)
+})
+
 
 export default routerAFamiliares
