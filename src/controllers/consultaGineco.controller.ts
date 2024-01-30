@@ -37,7 +37,7 @@ export class consultaGineco {
 
 
         } catch (error) {
-            res.status(500).json({ errorResponse: error })        }
+            res.status(500).json({ errorResponse: error })}
     }
 }
 

@@ -9,3 +9,7 @@ const routerTratamientoObstetro = Router();
 routerTratamientoObstetro.get("/tratamientos/:expedienteId", (req: Request, res: Response) => {
     tratamientoObstetro.getTratamientosByExpediente(req, res)
 })
+
+routerTratamientoObstetro.put(`tratamientos/edit/:expedienteId`,(req:Request, res:Response )=>{
+    tratamientoObstetro.modifyTratamientosObstetro(req,res)
+  })

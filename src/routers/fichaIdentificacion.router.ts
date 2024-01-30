@@ -3,7 +3,7 @@ import { fichaIdentificacion } from "../controllers/fichaIdentificacion.controll
 
 const controllerFichaIdentificacion = new fichaIdentificacion();
 const routerFichaIdentificacion = Router();
-const path = "/fichasIdentificacion";
+const path = "/fichasidentificacion";
 
 // todo: get all patients
 routerFichaIdentificacion.get(`${path}/all`, (req: Request, res: Response) => {
@@ -34,4 +34,7 @@ routerFichaIdentificacion.post(
   }
 );
 
+routerFichaIdentificacion.put(`${path}/edit/:expedienteId`,(req:Request, res:Response )=>{
+  controllerFichaIdentificacion.modifyFichaIdentificacion(req,res)
+})
 export default routerFichaIdentificacion;

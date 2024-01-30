@@ -22,7 +22,7 @@ routerAPersonales.post(
   }
 );
 
-routerAPersonales.put(`${path}/antecedentespersonales/edit/:expedienteId`, (req: Request, res: Response) => {
+routerAPersonales.put(`${path}/edit/:expedienteId`, (req: Request, res: Response) => {
   controllerAPersonales.modifyAPersonales(req, res)
 })
 

@@ -8,9 +8,10 @@ const path = '/consultagineco'
 
 // todo --> save consults & treatments
 routerGineco.post(`${path}/new`, (req: Request, res: Response) => {
-    consultGineco.updateConsult(req, res)
+   //crear logica de crear consultaGineco 
 })
 
 routerGineco.put(`${path}/edit/:expedienteId`, (req: Request, res: Response) => {
     // llamar al controller
+    consultGineco.updateConsult(req, res)
 })
