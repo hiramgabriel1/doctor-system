@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import patientsModels from "../models/fichaIdentificacion.model";
+import fichaIdentificacionModel from "../models/fichaIdentificacion.model";
 
 export class fichaIdentificacion {
   async getPatients(req: Request, res: Response) {
     try {
-      const patients = await patientsModels.findAll();
+      const patients = await fichaIdentificacionModel.findAll();
 
       return patients.length > 0
         ? res.status(200).json({ messaje: patients, details: true })
@@ -19,22 +19,20 @@ export class fichaIdentificacion {
   async getPatientsByName(req: Request, res: Response) {
     try {
       const { name } = req.body;
-      const patients = await patientsModels.findOne({
-        where: { nombre: name },
-      });
+      const patients = await fichaIdentificacionModel.findOne(name);
 
       return patients === null
         ? res.status(404).json("usuario no encontrado")
-        : res.status(200).json({ response: "encontrado", details: patients });
+        :  res.status(200).json({ response: "encontrado", details: patients });
 
-      // const patientsFiltered = patients.filter(patients.name.toLowerCase().includes(name.toLowerCase()));
-
-      // patientsFiltered
-      //   ? res.status(200).json({ messaje: patientsFiltered, details: true })
-      //   : res.status(400).json({
-      //       messaje: "No existen pacientes con ese nombre o apellido",
-      //       details: false,
-      //     });
+        //@ts-ignore
+       const patientsFiltered = patients.filter(patients.name.toLowerCase().includes(name.toLowerCase()));
+       patientsFiltered
+         ? res.status(200).json({ messaje: patientsFiltered, details: true })
+         : res.status(400).json({
+             messaje: "No existen pacientes con ese nombre o apellido",
+             details: false,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +41,7 @@ export class fichaIdentificacion {
   async getPatientsFiltred(req: Request, res: Response) {
     try {
       const { filter } = req.params;
-      const patients = await patientsModels.findOne({
+      const patients = await fichaIdentificacionModel.findOne({
         where: { filter: filter },
       });
 
@@ -54,7 +52,7 @@ export class fichaIdentificacion {
             details: false,
           });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ errorResponse: error })        
     }
   }
 
@@ -94,7 +92,7 @@ export class fichaIdentificacion {
         informacionAdicional,
       };
 
-      const createFicha = await patientsModels.create({ dataUser });
+      const createFicha = await fichaIdentificacionModel.create({ dataUser });
 
       return createFicha
         ? res
@@ -102,7 +100,8 @@ export class fichaIdentificacion {
             .json({ messaje: "user created" + dataUser, details: true })
         : res.status(400).json({ message: "Error al crear el user" });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ errorResponse: error })        
     }
   }
 }
+
