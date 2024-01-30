@@ -11,20 +11,20 @@ routerFichaIdentificacion.get(`${path}/all`, (req: Request, res: Response) => {
 });
 
 // todo: get by username
-routerFichaIdentificacion.get(
-  `${path}/filterName`,
-  (req: Request, res: Response) => {
-    controllerFichaIdentificacion.getPatientsByName(req, res);
-  }
-);
+//routerFichaIdentificacion.get(
+//`${path}/filterName`,
+//(req: Request, res: Response) => {
+//controllerFichaIdentificacion.getPatientsByName(req, res);
+//}
+//);
 
 // todo: show by filter
-routerFichaIdentificacion.get(
-  `${path}/filtered/:filter`,
-  (req: Request, res: Response) => {
-    controllerFichaIdentificacion.getPatientsFiltred(req, res);
-  }
-);
+//routerFichaIdentificacion.get(
+//  `${path}/filtered/:filter`,
+//  (req: Request, res: Response) => {
+//    controllerFichaIdentificacion.getPatientsFiltred(req, res);
+//  }
+//);
 
 // todo: create a new patient
 routerFichaIdentificacion.post(
@@ -34,7 +34,10 @@ routerFichaIdentificacion.post(
   }
 );
 
-routerFichaIdentificacion.put(`${path}/edit/:expedienteId`,(req:Request, res:Response )=>{
-  controllerFichaIdentificacion.modifyFichaIdentificacion(req,res)
-})
+routerFichaIdentificacion.put(
+  `${path}/edit/:expedienteId`,
+  (req: Request, res: Response) => {
+    controllerFichaIdentificacion.modifyFichaIdentificacion(req, res);
+  }
+);
 export default routerFichaIdentificacion;
