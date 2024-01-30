@@ -52,7 +52,7 @@ export class fichaIdentificacion {
             details: false,
           });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ errorResponse: error })        
     }
   }
 
@@ -100,7 +100,7 @@ export class fichaIdentificacion {
             .json({ messaje: "user created" + dataUser, details: true })
         : res.status(400).json({ message: "Error al crear el user" });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ errorResponse: error })        
     }
   }
 }

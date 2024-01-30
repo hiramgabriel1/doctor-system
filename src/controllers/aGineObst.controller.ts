@@ -20,8 +20,7 @@ export class aGineObstController {
               message:
                 "el paciente no posee antecedentes ginecologicos obstetros", details: false});
     } catch (error) {
-      console.log(error);
-    }
+res.status(500).json({ errorResponse: error })    }
   }
 
   async createAGineObst(req: Request, res: Response) {
@@ -68,7 +67,6 @@ export class aGineObstController {
         ? res.status(200).json({ message: ` created ${data}`, details: true })
         : res.status(400).json({ messga: ` error al crear`, details: false });
     } catch (error) {
-      console.log(error);
-    }
+res.status(500).json({ errorResponse: error })    }
   }
 }

@@ -17,8 +17,7 @@ export class aPersonales {
         : res.send(400).json({messaje: 'el paciente  no tiene antecedentes personales', details:false});
 
     }catch(error){
-        console.log(error)
-    }
+      res.status(500).json({ errorResponse: error })    }
   }
 
   async createAPersonales(req: Request, res: Response) {
@@ -57,7 +56,6 @@ export class aPersonales {
           ? res.status(200).json({message:'antecedentes personales creados' +dataAPersonales , details:true})
           : res.status(400).json({message:'internal server error', details:false})
     }catch(error){
-        console.log(error)
-    }
+      res.status(500).json({ errorResponse: error })    }
   }
 }
