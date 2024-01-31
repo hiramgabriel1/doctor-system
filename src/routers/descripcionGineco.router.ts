@@ -7,7 +7,7 @@ const routerDescipcionGineco = Router();
 
 // todo: get by username
 routerDescipcionGineco.get(
-  `descipcionGineco/:expedienteId`,
+  `descripciongineco/:expedienteId`,
   (req: Request, res: Response) => {
     controllerDescipcionGineco.getDescipcionGinecobyExpediente(req, res);
   }
@@ -15,11 +15,16 @@ routerDescipcionGineco.get(
 
 // todo: create a new patient
 routerDescipcionGineco.post(
-  `descipcionGineco/new`,
+  `descripciongineco/new`,
   (req: Request, res: Response) => {
     controllerDescipcionGineco.createDescripcionGineco(req, res);
   }
 );
+
+
+routerDescipcionGineco.put(`descripciongineco/edit/:expedienteId`,(req:Request, res:Response )=>{
+  controllerDescipcionGineco.modifyDescripcionGineco(req,res)
+})
 
 
 

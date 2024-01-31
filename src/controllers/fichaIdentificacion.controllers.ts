@@ -1,10 +1,18 @@
 import { Request, Response } from "express";
 import fichaIdentificacionModel from "../models/fichaIdentificacion.model";
+import { validarEstadoGineco, validarEstadoObstetro } from "../validator/validateEstado";
 
 export class fichaIdentificacion {
   async getPatients(req: Request, res: Response) {
     try {
       const patients = await fichaIdentificacionModel.findAll();
+
+      patients.forEach((patient)=>{
+        validarEstadoGineco(patient)
+        validarEstadoObstetro(patient)
+      })
+        
+      
 
       return patients.length > 0
         ? res.status(200).json({ messaje: patients, details: true })
@@ -12,7 +20,7 @@ export class fichaIdentificacion {
             .status(400)
             .json({ messaje: "No existen pacientes", details: false });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ errorResponse: error })        
     }
   }
 
@@ -34,7 +42,7 @@ export class fichaIdentificacion {
              details: false,
       });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ errorResponse: error })        
     }
   }
 
@@ -48,7 +56,7 @@ export class fichaIdentificacion {
       patients
         ? res.status(200).json({ messaje: patients, details: true })
         : res.status(400).json({
-            messaje: "No existen pacientes para este tipo de consilta",
+            message: "No existen pacientes para este tipo de consulta",
             details: false,
           });
     } catch (error) {
@@ -90,6 +98,9 @@ export class fichaIdentificacion {
         celular,
         tipo,
         informacionAdicional,
+        estadoConsultaObstetro:false,
+        estadoConsultaGineco:false
+    
       };
 
       const createFicha = await fichaIdentificacionModel.create({ dataUser });
@@ -103,5 +114,30 @@ export class fichaIdentificacion {
       res.status(500).json({ errorResponse: error })        
     }
   }
+
+
+  
+  async modifyFichaIdentificacion(req:Request, res:Response){
+    try{
+      const {expedienteId} = req.params
+      const data= req.body
+      //revisar datos vacios
+      const ConsultUpdate= await fichaIdentificacionModel.update(data,{
+        where:{
+          expediente_id :expedienteId
+        },
+        returning:true
+      });
+
+      ConsultUpdate
+      ?res.send(200).json({message:ConsultUpdate, details:true})
+      :res.send(400).json({message:'internal error', details:false})
+
+
+    }catch(error){
+      res.json(500).json({errorResponse:error})
+    }
+  }
 }
+
 

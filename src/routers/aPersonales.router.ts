@@ -22,4 +22,8 @@ routerAPersonales.post(
   }
 );
 
+routerAPersonales.put(`${path}/edit/:expedienteId`, (req: Request, res: Response) => {
+  controllerAPersonales.modifyAPersonales(req, res)
+})
+
 export default routerAPersonales;

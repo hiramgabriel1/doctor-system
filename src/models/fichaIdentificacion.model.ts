@@ -41,6 +41,14 @@ const fichaIdentificacion = sequelize.define("fichaIdentificacion", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  EstadoConsultaObstetro:{
+    type: DataTypes.BOOLEAN,
+    allowNull:false
+  },
+  EstadoConsultaGineco:{
+    type: DataTypes.BOOLEAN,
+    allowNull:false
+  },
 });
 
 export default fichaIdentificacion;

@@ -24,6 +24,7 @@ routerConsultaObstetro.post(
   (req: Request, res: Response) => {
     controllerFichaIdentificacion.createConsultaObstetro(req, res);
   }
+  
 );
 
 export default routerConsultaObstetro;

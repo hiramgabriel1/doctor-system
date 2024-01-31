@@ -16,4 +16,27 @@ export class tratamientoObstetroController{
             res.status(500).json({ errorResponse: error })        
         }
     }
+
+    
+  async modifyTratamientosObstetro(req:Request, res:Response){
+    try{
+      const {expedienteId} = req.params
+      const data= req.body
+      //revisar datos vacios
+      const ConsultUpdate= await tratamientoObstetro.update(data,{
+        where:{
+          expediente_id :expedienteId
+        },
+        returning:true
+      });
+
+      ConsultUpdate
+      ?res.send(200).json({message:ConsultUpdate, details:true})
+      :res.send(400).json({message:'internal error', details:false})
+
+
+    }catch(error){
+      res.json(500).json({errorResponse:error})
+    }
+  }
 }
