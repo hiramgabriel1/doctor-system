@@ -20,7 +20,7 @@ export class fichaIdentificacion {
             .status(400)
             .json({ messaje: "No existen pacientes", details: false });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ errorResponse: error })        
     }
   }
 
@@ -42,7 +42,7 @@ export class fichaIdentificacion {
              details: false,
       });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ errorResponse: error })        
     }
   }
 
@@ -56,7 +56,7 @@ export class fichaIdentificacion {
       patients
         ? res.status(200).json({ messaje: patients, details: true })
         : res.status(400).json({
-            messaje: "No existen pacientes para este tipo de consilta",
+            message: "No existen pacientes para este tipo de consulta",
             details: false,
           });
     } catch (error) {
