@@ -1,10 +1,18 @@
 import { Request, Response } from "express";
 import fichaIdentificacionModel from "../models/fichaIdentificacion.model";
+import { validarEstadoGineco, validarEstadoObstetro } from "../validator/validateEstado";
 
 export class fichaIdentificacion {
   async getPatients(req: Request, res: Response) {
     try {
       const patients = await fichaIdentificacionModel.findAll();
+
+      patients.forEach((patient)=>{
+        validarEstadoGineco(patient)
+        validarEstadoObstetro(patient)
+      })
+        
+      
 
       return patients.length > 0
         ? res.status(200).json({ messaje: patients, details: true })
@@ -90,6 +98,9 @@ export class fichaIdentificacion {
         celular,
         tipo,
         informacionAdicional,
+        estadoConsultaObstetro:false,
+        estadoConsultaGineco:false
+    
       };
 
       const createFicha = await fichaIdentificacionModel.create({ dataUser });

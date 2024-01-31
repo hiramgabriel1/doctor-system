@@ -27,10 +27,6 @@ const consultginecoModels = sequelize.define("consultGineco", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    estado: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-      },
 })
 
 export default consultginecoModels;

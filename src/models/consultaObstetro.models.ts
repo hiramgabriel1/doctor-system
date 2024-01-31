@@ -47,10 +47,6 @@ const consultaObstetro = sequelize.define("consultaObstetro", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  estado: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-  },
 });
 
 export default consultaObstetro;
