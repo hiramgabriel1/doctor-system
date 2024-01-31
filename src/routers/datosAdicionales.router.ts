@@ -13,3 +13,7 @@ routerDatosAdicionales.get(`${path}/:expedienteId`, (req: Request, res: Response
 routerDatosAdicionales.post(`${path}/new`, (req: Request, res: Response) => {
     controllerDatosAdicionales.createDatosAdicionales(req, res)
 })
+
+routerDatosAdicionales.put(`${path}/edit/:expedienteId`,(req:Request, res:Response )=>{
+    controllerDatosAdicionales.modifyDatosAdicionales(req,res)
+})
