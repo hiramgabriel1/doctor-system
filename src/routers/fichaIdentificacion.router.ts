@@ -26,7 +26,10 @@ routerFichaIdentificacion.get(`${path}/all`, (req: Request, res: Response) => {
 //  }
 //);
 
-// todo: create a new patient
+routerFichaIdentificacion.get(`${path}/:expedienteId`, (req: Request, res: Response) => {
+  controllerFichaIdentificacion.getPatientsByExpedient(req, res);
+});
+
 routerFichaIdentificacion.post(
   `${path}/create-patient`,
   (req: Request, res: Response) => {
