@@ -24,41 +24,21 @@ export class fichaIdentificacion {
     }
   }
 
-  async getPatientsByName(req: Request, res: Response) {
+  
+  async getPatientsByExpedient(req: Request, res: Response) {
     try {
-      const { name } = req.body;
-      const patients = await fichaIdentificacionModel.findOne(name);
+      const {expedienteId} = req.body
+            
+            const fichaIdentificacion = await fichaIdentificacionModel.findAll({
+                where:{
+                    expediente_id:expedienteId
+                }
+            })
 
-      return patients === null
-        ? res.status(404).json("usuario no encontrado")
-        :  res.status(200).json({ response: "encontrado", details: patients });
-
-        //@ts-ignore
-       const patientsFiltered = patients.filter(patients.name.toLowerCase().includes(name.toLowerCase()));
-       patientsFiltered
-         ? res.status(200).json({ messaje: patientsFiltered, details: true })
-         : res.status(400).json({
-             messaje: "No existen pacientes con ese nombre o apellido",
-             details: false,
-      });
-    } catch (error) {
-      res.status(500).json({ errorResponse: error })        
-    }
-  }
-
-  async getPatientsFiltred(req: Request, res: Response) {
-    try {
-      const { filter } = req.params;
-      const patients = await fichaIdentificacionModel.findOne({
-        where: { filter: filter },
-      });
-
-      patients
-        ? res.status(200).json({ messaje: patients, details: true })
-        : res.status(400).json({
-            message: "No existen pacientes para este tipo de consulta",
-            details: false,
-          });
+            fichaIdentificacion
+            ? res.status(200).json({message:fichaIdentificacion, details:true})
+            : res.status(400).json({message:"error internal", details:true})
+      
     } catch (error) {
       res.status(500).json({ errorResponse: error })        
     }
